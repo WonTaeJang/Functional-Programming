@@ -84,6 +84,33 @@
             console.log(_get(users[10], 'name'));
 
 
+            // 간결하게 만들기
+            function _filter(users, predi) {       // 응용형 함수, 고차함수(함수를 인자로 받거나 함수를 리턴하거나)
+                var new_list = [];
+                for(var i = 0; i < users.length; i++){
+                    if(predi(users[i])){
+                        new_list.push(users[i])
+                    }
+                }
+                return new_list;
+            }
+
+            function _map(list, mapper){
+                var new_list = [];
+                for(var i = 0; i < list.length; i++){
+                    new_list.push(mapper(list[i]));
+                }
+                return new_list;
+            }
+
+            console.log(
+                _map(
+                    _filter(users, function(user){ return user.age >= 30;}),
+                    _get('name')    //function(user){return user.name;}
+                )
+            );
+
+
 
         </script>
     </body>
