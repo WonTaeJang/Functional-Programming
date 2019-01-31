@@ -110,6 +110,14 @@
                 )
             );
 
+            console.log(
+                _map(
+                    _filter(users, function(user){ return user.age >= 30;}),
+                    _get('age')    //function(user){return user.name;}
+                )
+            );
+
+
 
 
         </script>
