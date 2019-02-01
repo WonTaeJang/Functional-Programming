@@ -14,7 +14,11 @@
             // 첫번째 인자로 받은 리스트를 하나로 만들어 준다.
             // 시각적으로 보기 편하다.
 
-
+            // 4. _rest // array like 객체를 자를수 있는 함수
+            var slice = Array.prototype.slice;
+            function _rest(list,num){
+                return slice.call(list, num || 1);
+            }
 
             function _reduce(list, iter,  memo){
                 if ( arguments.length == 2){
