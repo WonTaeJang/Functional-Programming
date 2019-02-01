@@ -32,3 +32,7 @@ function _each(list, iter){
 
     return list
 }
+
+function _add(a, b){
+    return a + b;
+}
