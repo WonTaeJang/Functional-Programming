@@ -25,7 +25,7 @@ function _map(list, mapper){
     return new_list;
 }
 
-function _each(list, iter){
+function _each(list, iter){     // list: array, iter: function
     for(var i = 0; i < list.length; i++){
         iter(list[i]);
     }
@@ -35,4 +35,15 @@ function _each(list, iter){
 
 function _add(a, b){
     return a + b;
+}
+
+function _reduce(list, iter,  memo){
+    if ( arguments.length == 2){
+        memo = list[0];
+        list = list.slice(1);
+    }
+    _each(list, function(val){
+        memo = iter(memo, val);
+    });
+    return memo;
 }
