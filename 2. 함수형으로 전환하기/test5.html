@@ -10,6 +10,7 @@
         <script type = "text/javascript">
 
             // 5. 파이프라인 만들기 : 함수를 연속적으로 실행해주는 함수
+            //                       함수를 리턴하는 함수
             function _pipe(){
                 var fns = arguments;
                 return function(arg){
@@ -34,6 +35,20 @@
 
             var f2 = xxx();
             console.log(f2(22));    // arg : 22
+
+            // 2. _go : 즉시 실행하는 함수
+            // 파이프의 즉시 실행 버젼
+            function _go(arg){
+                var fns = _rest(arguments); // array like object
+                return _pipe.apply(null, fns)(arg);
+            }
+
+            _go(1,
+                function(a){return a + 1},  // 1 + 1
+                function(a){return a * 2},   // 2 * 2;
+                function(a){return a * a},
+                console.log   
+            );
 
         </script>
     </body>

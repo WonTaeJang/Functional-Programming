@@ -47,3 +47,8 @@ function _reduce(list, iter,  memo){
     });
     return memo;
 }
+
+var slice = Array.prototype.slice;
+function _rest(list,num){
+    return slice.call(list, num || 1);
+}
