@@ -40,6 +40,7 @@
             // 파이프의 즉시 실행 버젼
             function _go(arg){
                 var fns = _rest(arguments); // array like object
+                                            // 인자 값중 앞에 1을 제외한 나머지 함수 사용
                 return _pipe.apply(null, fns)(arg);
             }
 
@@ -60,25 +61,28 @@
 
             console.log(
                 _map(
-                    _filter(users, function(user){ return user.age >= 30;}),
+                    _filter(users, function(user){ return user.age < 30;}),
                     _get('age')    //function(user){return user.name;}
                 )
             );
 
             _go(users, 
-                function(users){
-                    return _filter(user,function(user){
-                        return user.age >= 30;
-                    });
-                },
-                function(user){
-                    return _map(users, _get('name'));
-                },
+                _filter(user => user.age < 30),
+                _map(_get('name')),
                 console.log
             );
 
+            // 4. 화살표 함수 간단히
+            var a = function(user){ return user.age >= 30;}
+            var a = user => user.age >= 30;
 
+            var add = function(a, b){return a + b;};
+            var add = (a,b) => a + b;
+            var add = (a,b) => {
+                return a + b;
+            };
 
+            var add = (a,b) => ({val : a + b});
         </script>
     </body>
 </html>
