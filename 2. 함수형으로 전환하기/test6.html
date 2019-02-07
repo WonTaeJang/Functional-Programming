@@ -11,8 +11,21 @@
         // 6. _each의 외부 다형성 높이기
             // 1. _each에 null넣어도 에러 안나게
             _each(null, console.log);
-            console.log(_map(null, function(v){return v;}) );
+            //console.log(_map(null, function(v){return v;}) );
 
+            // 2. _keys 만들기
+            console.log(_keys({name: 'ID', age: 33}));
+            console.log(_keys([1,2,3,4]));
+            console.log(_keys(10));
+            console.log(_keys(null)); 
+
+            function _is_object(obj){
+                return typeof obj == 'object' && !!obj;
+            }
+
+            function _keys(obj){
+                return _is_object(obj) ? Object.keys(obj) : [];
+            }
 
         </script>
     </body>
