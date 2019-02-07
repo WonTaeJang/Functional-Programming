@@ -8,8 +8,11 @@
 
         <script type = "text/javascript" src = "..\js\script_temp.js"></script>
         <script type = "text/javascript">
+        // 6. _each의 외부 다형성 높이기
+            // 1. _each에 null넣어도 에러 안나게
+            _each(null, console.log);
+            console.log(_map(null, function(v){return v;}) );
 
-            
 
         </script>
     </body>

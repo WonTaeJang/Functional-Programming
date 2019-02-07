@@ -11,19 +11,22 @@ var _get = _curryr(function(obj, key){
 
 function _filter(users, predi) {       // 응용형 함수, 고차함수(함수를 인자로 받거나 함수를 리턴하거나)
     var new_list = [];
-    for(var i = 0; i < users.length; i++){
+
+    _each(list, function(val){
         if(predi(users[i])){
             new_list.push(users[i])
         }
-    }
+    });
+
     return new_list;
 }
 
 function _map(list, mapper){
     var new_list = [];
-    for(var i = 0; i < list.length; i++){
+    _each(list, function(val){
         new_list.push(mapper(list[i]));
-    }
+    });
+
     return new_list;
 }
 
@@ -39,8 +42,10 @@ var users = [
     {id:9, name: 'XX', age: 12}
 ];
 
+var _length = _get('length');
+
 function _each(list, iter){     // list: array, iter: function
-    for(var i = 0; i < list.length; i++){
+    for(var i = 0, len = _length(list); i < len; i++){
         iter(list[i]);
     }
 
@@ -67,5 +72,6 @@ function _rest(list,num){
     return slice.call(list, num || 1);
 }
 
+// curryr이 적용된 맵과 filter
 var _map = _curryr(_map),
  _filter = _curryr(_filter);
