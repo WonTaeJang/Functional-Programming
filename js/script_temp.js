@@ -112,3 +112,9 @@ var _values = _map(_identity);
 function _identity(val){
     return val;
 }
+
+function _pluck(data, key){
+    return _map(data, function(obj){
+        return obj[key];
+    });
+}

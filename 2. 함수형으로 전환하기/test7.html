@@ -17,29 +17,37 @@
         // 4. 접기 - reduce, min, max, group_by, count_by
 
             // 1. 수집하기 - map
-            console.log(
-                _map(users, function(user){
-                    return user.name;
-                })
-            )
-
-            function _values(data){
-                return _map(data, function(val){return val;})
-            }
-
-            function _identity(val){
-                return val;
-            }
-
-            var a = 10;
-            console.log(_identity(a));
-
-            console.log(_keys(users[0]))
-            console.log(_values(users[0]))
                 // 1. values
-                
+                console.log(
+                    _map(users, function(user){
+                        return user.name;
+                    })
+                )
 
-                // 2. pluck
+                // function _values(data){
+                //     return _map(data, _identity)
+                // }
+                
+                var _values = _map(_identity);
+
+                function _identity(val){
+                    return val;
+                }
+
+                var a = 10;
+                console.log(_identity(a));
+
+                // console.log(_keys(users[0]))
+                // console.log(_values(users[0]))
+
+                // 2. pluck // 외부에 있는것을 수집
+                function _pluck(data, key){
+                    return _map(data, function(obj){
+                        return obj[key];
+                    });
+                }
+
+                _pluck(users, 'age')
 
 
         </script>
