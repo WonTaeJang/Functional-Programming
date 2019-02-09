@@ -105,3 +105,10 @@ var _map = _curryr(_map),
                                 // 인자 값중 앞에 1을 제외한 나머지 함수 사용
     return _pipe.apply(null, fns)(arg);
 }
+
+            
+var _values = _map(_identity);
+
+function _identity(val){
+    return val;
+}
