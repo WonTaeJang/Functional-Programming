@@ -118,3 +118,16 @@ function _pluck(data, key){
         return obj[key];
     });
 }
+
+function _negate(func){
+    return function(val){
+        return !func(val);
+    }
+}
+
+// reject는 filter의 반대
+function _reject(data, predi){
+    return _filter(data, _negate(predi));
+}
+
+var _compact = _filter(_identity);
