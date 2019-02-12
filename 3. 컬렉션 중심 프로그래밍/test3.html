@@ -16,8 +16,36 @@
         // 3. 찾아내기 - find, some, every 등
         // 4. 접기 - reduce, min, max, group_by, count_by
 
-           
+           // find 해당하는 값을 만났을때 값을 리턴
+           function _find(list, predi){
+               var keys = _keys(list);
+               for(var i = 0, len = keys.length; i < len; i++)
+               {
+                    var val = list[keys[i]];
+                    if(predi(val)) return val;
+               }
+           }
 
+           function _find_index(list, predi){
+               var keys = _keys(list);
+               for(var i = 0, len = keys.length; i < len; i++)
+               {
+                    if(predi(list[keys[i]])) return i;
+               }
+               return -1;
+           }
+
+           console.log(
+               _find(users, function(user){
+                   return user.id == 20;
+               })
+           )
+
+           console.log(
+               _find_index(users, function(user){
+                   return user.name == 'DJ';
+               })
+           )
 
         </script>
     </body>
