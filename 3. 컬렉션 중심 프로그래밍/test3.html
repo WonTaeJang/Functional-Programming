@@ -17,23 +17,23 @@
         // 4. 접기 - reduce, min, max, group_by, count_by
 
            // find 해당하는 값을 만났을때 값을 리턴
-           function _find(list, predi){
+           var _find = curryr(function(list, predi){
                var keys = _keys(list);
                for(var i = 0, len = keys.length; i < len; i++)
                {
                     var val = list[keys[i]];
                     if(predi(val)) return val;
                }
-           }
+           });
 
-           function _find_index(list, predi){
+            var _find_index = curryr(function(list, predi){
                var keys = _keys(list);
                for(var i = 0, len = keys.length; i < len; i++)
                {
                     if(predi(list[keys[i]])) return i;
                }
                return -1;
-           }
+           });
 
            console.log(
                _find(users, function(user){
@@ -41,11 +41,51 @@
                })
            )
 
+           _go(users,
+                _find(function(user){
+                    return user.id == 50;
+                }),
+                _get('name'),
+                console.log
+            );
+
            console.log(
                _find_index(users, function(user){
                    return user.name == 'DJ';
                })
            )
+
+           // 3. some
+            function _some(data, predi){
+            
+                return _find_index(data,predi || _identity) != -1;   
+            }
+
+           _some([1,2,5,10,20], function(val){
+               return val > 10;
+           })
+
+           // 4. every
+           function _every(data, predi){
+               return _find_index(data, _negate(predi || _identity)) == -1;
+           }
+
+           _every([1,2,5,10,20], function(val){
+               return val > 10;
+           })
+
+           console.log(
+               _some([1,2,,0,10])
+           )
+
+           console.log(
+               _some(user, function(user){
+                   return user.age < 20;
+               })
+           );
+
+
+
 
         </script>
     </body>
