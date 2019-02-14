@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8"/>
+        <script type = "text/javascript" src = "..\js\script_temp.js"></script>
+    </head>
+    <body>
+        접기 - reduce, min, max, group_by, count_by<br />
+
+        <script type = "text/javascript">
+        
+        // 컬랙션 중심 프로그래밍의 4가지 유형과 함수
+
+        // 1. 수집하기 - map, values, pluck 등
+        // 2. 거르기 - filter, reject, compact, without 등
+        // 3. 찾아내기 - find, some, every 등
+        // 4. 접기 - reduce, min, max, group_by, count_by
+
+            // 4. 접기 - reduce
+
+            function _min(data){
+                return _reduce(data, function(a, b){
+                    return a < b ? a : b;   // 조건부 연산자
+                });
+            }
+
+            function _max(data){
+                return _reduce(data, function(a, b){
+                    return a > b ? a : b;
+                });
+            }
+
+            console.log(
+                _min([1, 2, 5, 10, -4])
+            );
+
+            console.log(
+                _max([1, 2, 5, 10, -4])
+            );
+          
+
+
+
+        </script>
+    </body>
+</html>
