@@ -37,7 +37,55 @@
             console.log(
                 _max([1, 2, 5, 10, -4])
             );
-          
+
+            // min by , max by  더욱 확장한 함수
+
+            function _min_by(data, iter){
+                return _reduce(data, function(a, b){
+                    return iter(a) < iter(b) ? a : b;   // 조건부 연산자
+                });
+            }
+
+            function _max_by(data, iter){
+                return _reduce(data, function(a, b){
+                    return iter(a) > iter(b) ? a : b;   // 조건부 연산자
+                });
+            }
+
+            var _min_by = _curryr(_min_by),
+                _max_by = _curryr(_max_by);
+
+            console.log(
+                _min_by([1, 2, 5, 10, -4], Math.abs)
+            );
+
+            console.log(
+                _max_by([1, 2, 5, 10, -4], Math.abs)
+            );
+
+            console.log(
+                _min_by(users, function(user){
+                    return user.age;
+                })
+            );
+
+            _go(
+                users,
+                _filter(user => user.age >= 30),
+                // _min_by(function(user){
+                //     return user.age;
+                // }),
+                _min_by(_get('age')),
+                console.log
+            );
+
+            _go(
+                users,
+                _reject(user => user.age >= 30),
+                _min_by(_get('age')),
+                _get('name'),
+                console.log
+            );
 
 
 
