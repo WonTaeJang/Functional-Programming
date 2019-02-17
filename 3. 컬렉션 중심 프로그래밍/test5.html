@@ -21,11 +21,24 @@
             {id: 9, name: 'XX', age: 12}
         ];
 
+        // var _group_by = _curryr(function(data, iter){
+        //     return _reduce(data, function(grouped, val){
+        //         var key = iter(val);
+        //         (grouped[key] = grouped[key] || [] ).push(val);
+        //         return grouped; // 재귀적
+        //     }, []);
+        // });
+
+        // 더 간결한 표현
+        function _push(obj, key, val){
+            (obj[key] = obj[key] || []).push(val);
+            return obj;
+        }
+
+        // 함수 실행을 통해 로직이 진행되는것을 볼 수 있다.
         var _group_by = _curryr(function(data, iter){
             return _reduce(data, function(grouped, val){
-                var key = iter(val);
-                (grouped[key] = grouped[key] || [] ).push(val);
-                return grouped; // 재귀적
+                return _push(grouped, iter(val), val);
             }, []);
         });
 
@@ -33,6 +46,28 @@
             users,
             _group_by(function(user){
                 return user.age;
+            }),
+            console.log
+        );
+
+        _go(
+            users,
+            _group_by(_get('age')),
+            console.log
+        );
+
+        _go(
+            users,
+            _group_by(function(user){
+                return user.age - user.age%10;
+            }),
+            console.log
+        );
+
+        _go(
+            users,
+            _group_by(function(user){
+                return user.name[0];
             }),
             console.log
         );
